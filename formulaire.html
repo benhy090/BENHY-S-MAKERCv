@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> FORMULAIRE BENHY'S CvMAKER</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Créer mon CV</h1>
+    <form action="traitement.php" method="post" enctypes="multipart/form-data">
+        <label>Nom :
+            <input type="text" name="nom" required>
+        </label><br>
+
+        <label>Prénom :
+            <input type="text" name="nom" required>
+        </label><br>
+
+        <label>Email :
+            <input type="email" name="email" required>
+        </label><br>
+
+        <label>Téléphone :
+            <input type="text" name="telephone" required>
+        </label><br>
+
+        <label>Résumé professionnel :
+            <textarea type="resume" rows="5"required></textarea>
+        </label><br>
+
+        <label>Photo :
+            <input type="file" name="photo" accept="">
+        </label><br>
+
+        <button type="submit">Générer le CV</button>
+    </form>
+</body>
+</html>
