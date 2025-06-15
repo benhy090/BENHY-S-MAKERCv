@@ -1,39 +1,60 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> FORMULAIRE BENHY'S CvMAKER</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Créer mon CV</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Créer mon CV</h1>
-    <form action="traitement.php" method="post" enctypes="multipart/form-data">
-        <label>Nom :
-            <input type="text" name="nom" required>
-        </label><br>
+  <header>
+    <h1>Bienvenue Sur BENHY'S CvMAKER</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="formulaire.html">Formulaire</a>
+    </nav>
+  </header>
 
-        <label>Prénom :
-            <input type="text" name="nom" required>
-        </label><br>
+  <div class="form-container">
+    <h2>Créer mon CV</h2>
+    <form action="traitement.php" method="POST" enctype="multipart/form-data">
+      <fieldset>
+        <legend>Informations personnelles</legend>
+        <label>Nom :</label>
+        <input type="text" name="nom" required>
 
-        <label>Email :
-            <input type="email" name="email" required>
-        </label><br>
+        <label>Prénom :</label>
+        <input type="text" name="prenom" required>
 
-        <label>Téléphone :
-            <input type="text" name="telephone" required>
-        </label><br>
+        <label>Email :</label>
+        <input type="email" name="email" required>
 
-        <label>Résumé professionnel :
-            <textarea type="resume" rows="5"required></textarea>
-        </label><br>
+        <label>Téléphone :</label>
+        <input type="text" name="telephone" required>
 
-        <label>Photo :
-            <input type="file" name="photo" accept="">
-        </label><br>
+        <div class="form-group">
+            <label>Photo (optionnelle) :</label><br>
+            <input type="file" name="photo">
+        </div>
 
-        <button type="submit">Générer le CV</button>
+      </fieldset>
+
+      <fieldset>
+        <legend>Résumé professionnel</legend>
+        <textarea name="resume" rows="4" placeholder="Décris brièvement ton profil..."></textarea>
+      </fieldset>
+
+      <fieldset>
+        <legend>Expériences professionnelles</legend>
+        <textarea name="experience" rows="4" placeholder="Ex : 2021-2023 : Développeur Web chez X"></textarea>
+      </fieldset>
+
+      <fieldset>
+        <legend>Formations</legend>
+        <textarea name="formation" rows="4" placeholder="Ex : 2020 : Licence Informatique - Université Y"></textarea>
+      </fieldset>
+
+      <button type="submit" class="cta-button">Générer votre CV</button>
     </form>
+  </div>
 </body>
 </html>
