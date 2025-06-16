@@ -2,59 +2,105 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Créer mon CV</title>
+  <title>Benhy’s CvMaker - Formulaire</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
   <header>
-    <h1>Bienvenue Sur BENHY'S CvMAKER</h1>
+    <h1>Bienvenue sur Benhy’s CvMaker</h1>
     <nav>
       <a href="index.html">Accueil</a>
       <a href="formulaire.html">Formulaire</a>
     </nav>
   </header>
 
-  <div class="form-container">
-    <h2>Créer mon CV</h2>
-    <form action="traitement.php" method="POST" enctype="multipart/form-data">
-      <fieldset>
-        <legend>Informations personnelles</legend>
-        <label>Nom :</label>
-        <input type="text" name="nom" required>
+  <!-- FORMULAIRE -->
+  <form action="traitement.php" method="POST" enctype="multipart/form-data" class="form-container">
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" name="nom" required>
 
-        <label>Prénom :</label>
-        <input type="text" name="prenom" required>
+    <label for="prenom">Prénom :</label>
+    <input type="text" id="prenom" name="prenom" required>
 
-        <label>Email :</label>
-        <input type="email" name="email" required>
+    <label for="naissance">Date de naissance :</label>
+    <input type="date" id="naissance" name="naissance" required>
 
-        <label>Téléphone :</label>
-        <input type="text" name="telephone" required>
+    <label for="email">Email :</label>
+    <input type="email" id="email" name="email" required>
 
-        <div class="form-group">
-            <label>Photo (optionnelle) :</label><br>
-            <input type="file" name="photo">
-        </div>
+    <label for="adresse">Adresse :</label>
+    <input type="text" id="adresse" name="adresse" required>
 
-      </fieldset>
+    <label for="formation">Formation :</label>
+    <input type="text" id="formation" name="formation" required>
 
-      <fieldset>
-        <legend>Résumé professionnel</legend>
-        <textarea name="resume" rows="4" placeholder="Décris brièvement ton profil..."></textarea>
-      </fieldset>
+    <label for="competences">Compétences :</label>
+    <textarea id="competences" name="competences" required></textarea>
 
-      <fieldset>
-        <legend>Expériences professionnelles</legend>
-        <textarea name="experience" rows="4" placeholder="Ex : 2021-2023 : Développeur Web chez X"></textarea>
-      </fieldset>
+    <label for="experience">Expérience :</label>
+    <textarea id="experience" name="experience" required></textarea>
 
-      <fieldset>
-        <legend>Formations</legend>
-        <textarea name="formation" rows="4" placeholder="Ex : 2020 : Licence Informatique - Université Y"></textarea>
-      </fieldset>
+    <label for="loisirs">Loisirs :</label>
+    <textarea id="loisirs" name="loisirs" required></textarea>
 
-      <button type="submit" class="cta-button">Générer votre CV</button>
-    </form>
+    <label for="photo">Photo de profil :</label>
+    <input type="file" id="photo" name="photo" accept="image/*">
+
+    <button type="submit">Créer votre CV</button>
+  </form>
+
+  <!-- PRÉVISUALISATION -->
+  <h2>Aperçu du CV</h2>
+  <div id="cv-preview" class="cv-preview">
+    <img id="preview-photo" alt="Photo de profil" style="max-width:150px; display:none;"><br>
+    <p><strong>Nom :</strong> <span id="preview-nom"></span></p>
+    <p><strong>Prénom :</strong> <span id="preview-prenom"></span></p>
+    <p><strong>Date de naissance :</strong> <span id="preview-naissance"></span></p>
+    <p><strong>Email :</strong> <span id="preview-email"></span></p>
+    <p><strong>Adresse :</strong> <span id="preview-adresse"></span></p>
+    <p><strong>Formation :</strong> <span id="preview-formation"></span></p>
+    <p><strong>Compétences :</strong> <span id="preview-competences"></span></p>
+    <p><strong>Expérience :</strong> <span id="preview-experience"></span></p>
+    <p><strong>Loisirs :</strong> <span id="preview-loisirs"></span></p>
   </div>
+
+  <!-- SCRIPT JAVASCRIPT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const champs = [
+        "nom", "prenom", "naissance", "email", "adresse",
+        "formation", "competences", "experience", "loisirs"
+      ];
+
+      champs.forEach(champ => {
+        const input = document.querySelector([name="${champ}"]);
+        const preview = document.getElementById(preview-${champ});
+
+        if (input && preview) {
+          input.addEventListener("input", () => {
+            preview.textContent = input.value;
+          });
+        }
+      });
+
+      // Affichage dynamique de la photo
+      const photoInput = document.getElementById("photo");
+      const previewPhoto = document.getElementById("preview-photo");
+
+      photoInput.addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            previewPhoto.src = e.target.result;
+            previewPhoto.style.display = "block";
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
