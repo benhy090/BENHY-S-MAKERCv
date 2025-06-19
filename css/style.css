@@ -9,23 +9,22 @@ body {
 
 /* HEADER */
 header {
-  background-color: rgba(255, 255, 255, 0.85);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
-  border-bottom: 2px solid #004080;
+  
 }
 
 header h1 {
   font-size: 24px;
-  color: #004080;
+  color: #070707;
   margin: 0;
 }
 
 header nav a {
   text-decoration: none;
-  color: #004080;
+  color: #020202;
   margin-left: 20px;
   font-weight: bold;
 }
@@ -49,13 +48,17 @@ button:hover, .btn:hover {
 }
 
 /* FORMULAIRE */
-form {
-  background-color: rgba(255, 255, 255, 0.92);
-  max-width: 800px;
-  margin: 50px auto;
+.form-container {
+  max-width: 600px;
+  margin: 40px auto;
   padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  
+}
+
+form h2 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 form label {
@@ -64,119 +67,32 @@ form label {
   font-weight: bold;
 }
 
-form input[type="text"],
-form input[type="email"],
-form input[type="date"],
-form textarea,
-form input[type="file"] {
-  width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
+form input,
 form textarea {
-  resize: vertical;
-}
-
-/* CV */
-.cv-container {
-  max-width: 800px;
-  margin: 50px auto;
-  background-color: white;
-  padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-h1, h2 {
-  text-align: center;
-  color: #004080;
-}
-
-p {
-  line-height: 1.6;
-}
-
-/* Photo profil */
-.photo {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.photo img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #004080;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  header {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  header nav a {
-    margin: 10px 0;
-  }
-
-  form, .cv-container {
-    margin: 20px;
-    padding: 20px;
-  }
-}
-
-.cv-body {
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-  margin: 0;
-  padding: 20px;
-}
-
-.cv-wrapper {
-  display: flex;
-  justify-content: space-between;
-  max-width: 1000px;
-  margin: 0 auto;
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.cv-colonne {
-  width: 48%;
-}
-
-.gauche {
-  border-right: 2px solid #ccc;
-  padding-right: 20px;
-}
-
-.droite {
-  padding-left: 20px;
-}
-
-.cv-photo {
   width: 100%;
-  max-width: 200px;
-  border-radius: 10px;
-  margin-bottom: 15px;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
-.cv-info p {
-  margin: 8px 0;
+form input[type="file"] {
+  background-color: #f0f0f0;
 }
 
-.cv-section {
-  margin-bottom: 25px;
+form button {
+  display: block;
+  margin: 30px auto 0;
+  padding: 12px 30px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.cv-section h3 {
-  color: #003366;
-  margin-bottom: 8px;
+form button:hover {
+  background-color: #004999;
 }

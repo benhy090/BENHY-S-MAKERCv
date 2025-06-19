@@ -1,103 +1,58 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Benhy’s CvMaker - Formulaire</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulaire CV - Benhy</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
   <header>
-    <h1>Bienvenue sur BENHY'S CvMAKER</h1>
+    <h1>Bienvenue sur Benhy's Cv</h1>
     <nav>
       <a href="index.html">Accueil</a>
-      <a href="formulaire.html">Formulaire</a>
+      <a href="formulaire.html" class="active">Formulaire</a>
     </nav>
   </header>
 
-  <form action="traitement.php" method="POST" enctype="multipart/form-data" class="form-container">
-    <label>Nom :</label>
-    <input type="text" name="nom" id="nom" required>
+  <main class="form-container">
+    <form action="cv.php" method="POST" enctype="multipart/form-data">
+      <h2>Créer votre CV</h2>
 
-    <label>Prénom :</label>
-    <input type="text" name="prenom" id="prenom" required>
+      <label>Nom :</label>
+      <input type="text" name="nom" required>
 
-    <label>Date de naissance :</label>
-    <input type="date" name="naissance" id="naissance" required>
+      <label>Prénom :</label>
+      <input type="text" name="prenom" required>
 
-    <label>Email :</label>
-    <input type="email" name="email" id="email" required>
+      <label>Date de naissance :</label>
+      <input type="date" name="date_naissance" required>
 
-    <label>Adresse :</label>
-    <input type="text" name="adresse" id="adresse" required>
+      <label>Email :</label>
+      <input type="email" name="email" required>
 
-    <label>Formation :</label>
-    <input type="text" name="formation" id="formation" required>
+      <label>Adresse :</label>
+      <input type="text" name="adresse" required>
 
-    <label>Compétences :</label>
-    <textarea name="competences" id="competences" required></textarea>
+      <label>Formations :</label>
+      <textarea name="formations" rows="4" required></textarea>
 
-    <label>Expérience :</label>
-    <textarea name="experience" id="experience" required></textarea>
+      <label>Compétences :</label>
+      <textarea name="competences" rows="4" required></textarea>
 
-    <label>Loisirs :</label>
-    <textarea name="loisirs" id="loisirs" required></textarea>
+      <label>Expériences :</label>
+      <textarea name="experiences" rows="4" required></textarea>
 
-    <label>Photo de profil :</label>
-    <input type="file" name="photo" id="photo" accept="image/*">
+      <label>Loisirs :</label>
+      <input type="text" name="loisirs" required>
 
-    <button type="submit">Créer votre CV</button>
-  </form>
+      <label>Photo de profil :</label>
+      <input type="file" name="photo" accept="image/*" required>
 
-  <!-- Prévisualisation -->
-  <h2>Aperçu du CV</h2>
-  <div id="cv-preview" class="cv-preview">
-    <img id="preview-photo" alt="Photo de profil" style="max-width:150px; display:none;"><br>
-    <p><strong>Nom :</strong> <span id="preview-nom"></span></p>
-    <p><strong>Prénom :</strong> <span id="preview-prenom"></span></p>
-    <p><strong>Date de naissance :</strong> <span id="preview-naissance"></span></p>
-    <p><strong>Email :</strong> <span id="preview-email"></span></p>
-    <p><strong>Adresse :</strong> <span id="preview-adresse"></span></p>
-    <p><strong>Formation :</strong> <span id="preview-formation"></span></p>
-    <p><strong>Compétences :</strong> <span id="preview-competences"></span></p>
-    <p><strong>Expérience :</strong> <span id="preview-experience"></span></p>
-    <p><strong>Loisirs :</strong> <span id="preview-loisirs"></span></p>
-  </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const champsTexte = [
-        "nom", "prenom", "naissance", "email", "adresse",
-        "formation", "competences", "experience", "loisirs"
-      ];
-
-      champsTexte.forEach(champ => {
-        const input = document.getElementById(champ);
-        const preview = document.getElementById("preview-" + champ);
-
-        if (input && preview) {
-          input.addEventListener("input", () => {
-            preview.textContent = input.value;
-          });
-        }
-      });
-
-      const photoInput = document.getElementById("photo");
-      const previewPhoto = document.getElementById("preview-photo");
-
-      photoInput.addEventListener("change", () => {
-        const file = photoInput.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = e => {
-            previewPhoto.src = e.target.result;
-            previewPhoto.style.display = "block";
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-    });
-  </script>
+      <button type="submit">Créer votre CV</button>
+    </form>
+  </main>
 
 </body>
 </html>
