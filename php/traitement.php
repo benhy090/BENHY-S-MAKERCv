@@ -1,36 +1,19 @@
 <?php
-// Récupération des données du formulaire
-$nom = htmlspecialchars($_POST['nom']);
-$prenom = htmlspecialchars($_POST['prenom']);
-$email = htmlspecialchars($_POST['email']);
-$telephone = htmlspecialchars($_POST['telephone']);
-$resume = htmlspecialchars($_POST['resume']);
-?>
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    session_start();
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Mon CV - BENHY'S CvMAKER</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <script src="../js/html2pdf.bundle.min.js"></script>
-</head>
-<body>
-  <div id="cv">
-    <h1><?php echo $prenom . ' ' . $nom; ?></h1>
-    <p><strong>Email :</strong> <?php echo $email; ?></p>
-    <p><strong>Téléphone :</strong> <?php echo $telephone; ?></p>
-    <h2>Résumé Professionnel</h2>
-    <p><?php echo nl2br($resume); ?></p>
-  </div>
+    $_SESSION['cv'] = $_POST;
 
-  <button onclick="downloadPDF()">📄 Télécharger en PDF</button>
+    if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
+        $photo_name = basename($_FILES['photo']['name']);
+        $target_path = "photos/" . $photo_name;
 
-  <script>
-    function downloadPDF() {
-      const element = document.getElementById("cv");
-      html2pdf().from(element).save("Mon_CV.pdf");
+        move_uploaded_file($_FILES['photo']['tmp_name'], $target_path);
+        $_SESSION['cv']['photo'] = $target_path;
     }
-  </script>
-</body>
-</html>
+
+    header("Location: cv.php");
+    exit();
+} else {
+    echo "Accès non autorisé.";
+}
