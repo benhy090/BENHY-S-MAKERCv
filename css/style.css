@@ -29,6 +29,7 @@ header nav a {
   font-weight: bold;
 }
 
+
 /* BOUTONS */
 button, .btn {
   display: inline-block;
@@ -97,71 +98,100 @@ form button:hover {
   background-color: #004999;
 }
 
+/* Style général du corps */
+.cv-body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f3f3f3;
+  color: #333;
+}
+
+/* Conteneur principal du CV */
 .cv-container {
   display: flex;
-  justify-content: space-between;
   max-width: 1000px;
-  margin: 50px auto;
-  background-color: #ffffffdd;
-  padding: 30px;
-  border-radius: 8px;
+  margin: 40px auto;
+  background: white;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 20px;
 }
 
-.cv-left, .cv-right {
-  width: 48%;
-}
-
-.cv-left {
-  border-right: 2px solid #ccc;
-  padding-right: 20px;
-}
-
-.cv-right {
-  padding-left: 20px;
-}
-
-.cv-photo img {
-  width: 100%;
-  max-width: 200px;
+/* Partie gauche du CV */
+.photo-cv {
+  max-width: 35%;
   height: auto;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto 20px auto;
+}
+
+.cv-left img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid #555;
 }
 
 .cv-left h2 {
   margin: 10px 0;
-  font-size: 24px;
+  font-size: 22px;
+  color: #222;
 }
 
-.cv-left p, .cv-right p {
-  margin: 8px 0;
-  font-size: 16px;
+.cv-left p {
+  font-size: 14px;
+  margin: 10px 0;
   line-height: 1.5;
 }
 
+/* Partie droite du CV */
+.cv-right {
+  width: 65%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.cv-right section {
+  margin-bottom: 25px;
+}
+
 .cv-right h3 {
-  margin-top: 20px;
-  font-size: 20px;
-  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #007BFF;
+  border-bottom: 2px solid #007BFF;
   padding-bottom: 5px;
 }
 
-.btn-container {
+.cv-right p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Ligne invisible au milieu (c’est la séparation naturelle entre flex items) */
+
+/* Bouton PDF */
+.pdf-button-container {
   text-align: center;
   margin-top: 30px;
 }
 
-.btn-container button {
-  background-color: #0066cc;
-  color: white;
-  padding: 12px 25px;
+#download-pdf {
+  padding: 12px 24px;
   font-size: 16px;
+  background-color: #007BFF;
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.btn-container button:hover {
-  background-color: #004d99;
+#download-pdf:hover {
+  background-color: #0056b3;
 }
