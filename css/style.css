@@ -96,3 +96,72 @@ form button {
 form button:hover {
   background-color: #004999;
 }
+
+.cv-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: 50px auto;
+  background-color: #ffffffdd;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.cv-left, .cv-right {
+  width: 48%;
+}
+
+.cv-left {
+  border-right: 2px solid #ccc;
+  padding-right: 20px;
+}
+
+.cv-right {
+  padding-left: 20px;
+}
+
+.cv-photo img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.cv-left h2 {
+  margin: 10px 0;
+  font-size: 24px;
+}
+
+.cv-left p, .cv-right p {
+  margin: 8px 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.cv-right h3 {
+  margin-top: 20px;
+  font-size: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+.btn-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.btn-container button {
+  background-color: #0066cc;
+  color: white;
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-container button:hover {
+  background-color: #004d99;
+}
