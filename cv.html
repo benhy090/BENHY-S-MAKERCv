@@ -6,59 +6,67 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="cv-wrapper">
-    <div class="cv-container" id="cv">
-      <div class="left-column">
-        <img id="photoPreview" alt="Photo de profil">
-        <h2 id="nomPrenom"></h2>
-        <p><strong>Date de naissance :</strong> <span id="dateNaissance"></span></p>
-        <p><strong>Email :</strong> <span id="email"></span></p>
-        <p><strong>Téléphone :</strong> <span id="telephone"></span></p>
-        <p><strong>Adresse :</strong> <span id="adresse"></span></p>
-
-        <h3>Langues</h3>
-        <p id="langues"></p>
-      </div>
-
-      <div class="right-column">
-        <h2>Expériences professionnelles</h2>
-        <p id="experiences"></p>
-
-        <h2>Formations</h2>
-        <p id="formations"></p>
-
-        <h2>Compétences</h2>
-        <p id="competences"></p>
-      </div>
+  <div id="cv" class="cv-container">
+    <div class="left-column">
+      <img id="photoPreview" alt="Photo de profil">
+      <h2 id="nomPrenom"></h2>
+      <p><strong>Date de naissance :</strong> <span id="dateNaissance"></span></p>
+      <p><strong>Email :</strong> <span id="email"></span></p>
+      <p><strong>Téléphone :</strong> <span id="telephone"></span></p>
+      <p><strong>Adresse :</strong> <span id="adresse"></span></p>
+      <h3>Langues</h3>
+      <p id="langues"></p>
     </div>
 
-    <div class="pdf-button">
-      <button onclick="genererPDF()">Télécharger le CV en PDF</button>
+    <div class="right-column">
+      <h2>Expériences professionnelles</h2>
+      <p id="experiences"></p>
+
+      <h2>Formations</h2>
+      <p id="formations"></p>
+
+      <h2>Compétences</h2>
+      <p id="competences"></p>
     </div>
+  </div>
+
+  <div class="pdf-button">
+    <button onclick="genererPDF()">Télécharger le CV en PDF</button>
   </div>
 
   <script src="js/html2pdf.bundle.min.js"></script>
   <script>
+    const get = (id, key) => {
+      const val = localStorage.getItem(key);
+      if (val) document.getElementById(id).textContent = val;
+    };
+
     const nom = localStorage.getItem('nom') || '';
     const prenom = localStorage.getItem('prenom') || '';
     document.getElementById('nomPrenom').textContent = prenom + ' ' + nom;
 
-    document.getElementById('dateNaissance').textContent = localStorage.getItem('dateNaissance') || '';
-    document.getElementById('email').textContent = localStorage.getItem('email') || '';
-    document.getElementById('telephone').textContent = localStorage.getItem('telephone') || '';
-    document.getElementById('adresse').textContent = localStorage.getItem('adresse') || '';
-    document.getElementById('langues').textContent = localStorage.getItem('langues') || '';
-    document.getElementById('experiences').textContent = localStorage.getItem('experiences') || '';
-    document.getElementById('formations').textContent = localStorage.getItem('formations') || '';
-    document.getElementById('competences').textContent = localStorage.getItem('competences') || '';
+    get('dateNaissance', 'dateNaissance');
+    get('email', 'email');
+    get('telephone', 'telephone');
+    get('adresse', 'adresse');
+    get('langues', 'langues');
+    get('experiences', 'experiences');
+    get('formations', 'formations');
+    get('competences', 'competences');
 
-    const photoBase64 = localStorage.getItem('photo');
-    if (photoBase64) {
-      document.getElementById('photoPreview').src = photoBase64;
+    const photo = localStorage.getItem('photo');
+    if (photo) {
+      document.getElementById('photoPreview').src = photo;
     }
 
     function genererPDF() {
-      html2pdf().from(document.getElementById('cv')).save('mon_cv.pdf');
+      html2pdf().set({
+        margin: 0,
+        filename: 'mon_cv.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      }).from(document.getElementById('cv')).save();
     }
   </script>
 </body>
