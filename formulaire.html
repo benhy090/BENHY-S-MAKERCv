@@ -1,58 +1,80 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Formulaire BENHY'S CvMAKER</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <title>Formulaire CV</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="form-container">
+    <h1>Créer mon CV</h1>
+    <form id="cvForm">
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" name="nom" required>
 
-  <header>
-    <h1>Bienvenue sur le formulaire de BENHY'S CvMAKER</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="formulaire.html" class="active">Formulaire</a>
-    </nav>
-  </header>
+      <label for="prenom">Prénom :</label>
+      <input type="text" id="prenom" name="prenom" required>
 
-  <main class="form-container">
-    <form action="cv.php" method="POST" enctype="multipart/form-data">
-      <h2>Créer votre CV</h2>
+      <label for="dateNaissance">Date de naissance :</label>
+      <input type="date" id="dateNaissance" name="dateNaissance" required>
 
-      <label>Nom :</label>
-      <input type="text" name="nom" required>
+      <label for="email">Email :</label>
+      <input type="email" id="email" name="email" required>
 
-      <label>Prénom :</label>
-      <input type="text" name="prenom" required>
+      <label for="telephone">Téléphone :</label>
+      <input type="tel" id="telephone" name="telephone" required>
 
-      <label>Date de naissance :</label>
-      <input type="date" name="date_naissance" required>
+      <label for="adresse">Adresse :</label>
+      <input type="text" id="adresse" name="adresse" required>
 
-      <label>Email :</label>
-      <input type="email" name="email" required>
+      <label for="experiences">Expériences professionnelles :</label>
+      <textarea id="experiences" name="experiences" rows="4" required></textarea>
 
-      <label>Adresse :</label>
-      <input type="text" name="adresse" required>
+      <label for="formations">Formations :</label>
+      <textarea id="formations" name="formations" rows="4" required></textarea>
 
-      <label>Formations :</label>
-      <textarea name="formations" rows="4" required></textarea>
+      <label for="competences">Compétences :</label>
+      <textarea id="competences" name="competences" rows="3" required></textarea>
 
-      <label>Compétences :</label>
-      <textarea name="competences" rows="4" required></textarea>
+      <label for="langues">Langues :</label>
+      <textarea id="langues" name="langues" rows="2" required></textarea>
 
-      <label>Expériences :</label>
-      <textarea name="experiences" rows="4" required></textarea>
+      <label for="photo">Photo de profil :</label>
+      <input type="file" id="photo" name="photo" accept="image/*" required>
 
-      <label>Loisirs :</label>
-      <input type="text" name="loisirs" required>
-
-      <label>Photo de profil :</label>
-      <input type="file" name="photo" accept="image/*" required>
-
-      <button type="submit">Créer votre CV</button>
+      <button type="submit">Générer le CV</button>
     </form>
-  </main>
+  </div>
 
+  <script>
+    document.getElementById('cvForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const photoInput = document.getElementById('photo');
+      const file = photoInput.files[0];
+      const reader = new FileReader();
+
+      reader.onloadend = function () {
+        localStorage.setItem('photo', reader.result);
+
+        localStorage.setItem('nom', document.getElementById('nom').value);
+        localStorage.setItem('prenom', document.getElementById('prenom').value);
+        localStorage.setItem('dateNaissance', document.getElementById('dateNaissance').value);
+        localStorage.setItem('email', document.getElementById('email').value);
+        localStorage.setItem('telephone', document.getElementById('telephone').value);
+        localStorage.setItem('adresse', document.getElementById('adresse').value);
+        localStorage.setItem('experiences', document.getElementById('experiences').value);
+        localStorage.setItem('formations', document.getElementById('formations').value);
+        localStorage.setItem('competences', document.getElementById('competences').value);
+        localStorage.setItem('langues', document.getElementById('langues').value);
+
+        window.location.href = 'cv.html';
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
 </body>
 </html>
