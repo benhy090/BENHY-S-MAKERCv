@@ -6,47 +6,51 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="cv-container" id="cv">
-    <div class="left-column">
-      <img id="photoPreview" alt="Photo de profil">
-      <h2 id="nomPrenom"></h2>
-      <p><strong>Date de naissance :</strong> <span id="dateNaissance"></span></p>
-      <p><strong>Email :</strong> <span id="email"></span></p>
-      <p><strong>Téléphone :</strong> <span id="telephone"></span></p>
-      <p><strong>Adresse :</strong> <span id="adresse"></span></p>
+  <div class="cv-wrapper">
+    <div class="cv-container" id="cv">
+      <div class="left-column">
+        <img id="photoPreview" alt="Photo de profil">
+        <h2 id="nomPrenom"></h2>
+        <p><strong>Date de naissance :</strong> <span id="dateNaissance"></span></p>
+        <p><strong>Email :</strong> <span id="email"></span></p>
+        <p><strong>Téléphone :</strong> <span id="telephone"></span></p>
+        <p><strong>Adresse :</strong> <span id="adresse"></span></p>
 
-      <h3>Langues</h3>
-      <p id="langues"></p>
+        <h3>Langues</h3>
+        <p id="langues"></p>
+      </div>
+
+      <div class="right-column">
+        <h2>Expériences professionnelles</h2>
+        <p id="experiences"></p>
+
+        <h2>Formations</h2>
+        <p id="formations"></p>
+
+        <h2>Compétences</h2>
+        <p id="competences"></p>
+      </div>
     </div>
 
-    <div class="right-column">
-      <h2>Expériences professionnelles</h2>
-      <p id="experiences"></p>
-
-      <h2>Formations</h2>
-      <p id="formations"></p>
-
-      <h2>Compétences</h2>
-      <p id="competences"></p>
+    <div class="pdf-button">
+      <button onclick="genererPDF()">Télécharger le CV en PDF</button>
     </div>
-  </div>
-
-  <div class="pdf-button">
-    <button onclick="genererPDF()">Télécharger le CV en PDF</button>
   </div>
 
   <script src="js/html2pdf.bundle.min.js"></script>
   <script>
-    document.getElementById('nomPrenom').textContent = 
-      (localStorage.getItem('prenom') || '') + ' ' + (localStorage.getItem('nom') || '');
+    const nom = localStorage.getItem('nom') || '';
+    const prenom = localStorage.getItem('prenom') || '';
+    document.getElementById('nomPrenom').textContent = prenom + ' ' + nom;
+
     document.getElementById('dateNaissance').textContent = localStorage.getItem('dateNaissance') || '';
     document.getElementById('email').textContent = localStorage.getItem('email') || '';
     document.getElementById('telephone').textContent = localStorage.getItem('telephone') || '';
     document.getElementById('adresse').textContent = localStorage.getItem('adresse') || '';
+    document.getElementById('langues').textContent = localStorage.getItem('langues') || '';
     document.getElementById('experiences').textContent = localStorage.getItem('experiences') || '';
     document.getElementById('formations').textContent = localStorage.getItem('formations') || '';
     document.getElementById('competences').textContent = localStorage.getItem('competences') || '';
-    document.getElementById('langues').textContent = localStorage.getItem('langues') || '';
 
     const photoBase64 = localStorage.getItem('photo');
     if (photoBase64) {
